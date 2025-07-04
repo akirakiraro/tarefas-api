@@ -1,18 +1,19 @@
-## ✨ What’s New
+## What’s New
 
 <!-- Descreva resumidamente o que esta branch implementa ou corrige -->
 
 ---
 
-## 📦 Changes
+## Changes
 
 - <!-- Lista de mudanças feitas -->
--
+- Sincronização da branch `feature` com `develop`
+- Sem alterações de lógica
 -
 
 ---
 
-## 📲 Endpoints (se aplicável)
+## Endpoints (se aplicável)
 
 - `GET /...` – ...
 - `POST /...` – ...
@@ -21,7 +22,7 @@
 
 ---
 
-## 🧪 How to Test
+## How to Test
 
 <!-- Instruções para testar a funcionalidade -->
 
