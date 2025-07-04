@@ -18,6 +18,7 @@ public class Tarefa {
     public Tarefa(String titulo, String descricao) {
         this.titulo = titulo;
         this.descricao = descricao;
+        this.concluido = false;
     }
 
     public Long getId() {
