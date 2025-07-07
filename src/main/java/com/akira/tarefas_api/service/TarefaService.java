@@ -1,11 +1,10 @@
 package com.akira.tarefas_api.service;
 
+import com.akira.tarefas_api.exception.TarefaNaoEncontrada;
 import com.akira.tarefas_api.model.Tarefa;
 import com.akira.tarefas_api.repository.TarefaRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TarefaService {
@@ -20,8 +19,9 @@ public class TarefaService {
         return tarefaRepository.findAll();
     }
 
-    public Optional<Tarefa> buscarPorId(Long id) {
-        return tarefaRepository.findById(id);
+    public Tarefa buscarPorId(Long id) {
+        return tarefaRepository.findById(id)
+                .orElseThrow(() -> new TarefaNaoEncontrada("Tarefa com Id" + id + "não encontrado!"));
     }
 
     public Tarefa salvarTarefa(Tarefa tarefa) {
@@ -29,6 +29,9 @@ public class TarefaService {
     }
 
     public void deletarTarefa(Long id) {
+        if(!tarefaRepository.existsById(id)) {
+            throw new TarefaNaoEncontrada("Tarefa com o ID "+id+" não encontrado!");
+        }
         tarefaRepository.deleteById(id);
     }
 }

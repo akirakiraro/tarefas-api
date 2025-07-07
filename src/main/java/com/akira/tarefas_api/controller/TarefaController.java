@@ -1,8 +1,10 @@
 package com.akira.tarefas_api.controller;
 
+import com.akira.tarefas_api.exception.TarefaNaoEncontrada;
 import com.akira.tarefas_api.model.Tarefa;
 import com.akira.tarefas_api.service.TarefaService;
 import jakarta.servlet.ServletRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,10 +25,9 @@ public class TarefaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Tarefa> buscarTarefa(@PathVariable Long id) {
-        return tarefaService.buscarPorId(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<?> buscarTarefa(@PathVariable Long id) {
+        Tarefa tarefa = tarefaService.buscarPorId(id);
+        return ResponseEntity.ok(tarefa);
     }
 
     @PostMapping
